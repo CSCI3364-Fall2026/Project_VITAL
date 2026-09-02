@@ -151,7 +151,7 @@ If this fails, **do not proceed to OpenEMR**. Resolve the Docker installation fi
 Choose a location for course projects, then:
 
 ```bash
-git clone https://github.com/mairasamary/Project_VITAL.git
+git clone https://github.com/CSCI3364-Fall2026/Project_VITAL.git
 cd Project_VITAL
 ```
 

@@ -33,7 +33,7 @@ By the end of this assignment, you should be able to:
 
 ## Team and Time Expectations
 
-Work in **teams of 3–4 students**, unless your instructor specifies otherwise.
+Work in your **assigned Project VITAL team**.
 
 All team members should actively interact with OpenEMR. Do not assign one person to operate the system while everyone else only watches.
 

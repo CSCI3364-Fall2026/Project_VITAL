@@ -36,61 +36,41 @@ Do **not** submit your assignments directly to the main Project VITAL repository
 
 ---
 
-# 2. Create Your Team Repository
+# 2. Your Team Repository
 
-One member of your team should create the repository.
+The instructor will create one **private GitHub repository for each Project VITAL team** inside the `CSCI3364-Fall2026` GitHub organization.
 
-Unless your instructor provides a different naming convention, name it:
+Team repositories will use names such as `team-01`, `team-02`, `team-03`, and `team-04`.
 
-```text
-VITAL-Team-XX
-```
-
-where `XX` is your assigned team name.
-
-Examples:
-
-```text
-VITAL-Team-Eagles
-VITAL-Team-Q&A
-VITAL-Team-TestingEagles
-```
-
-## Repository visibility
-
-Create the repository as:
-
-> **Private**
-
-Do not make your team repository public unless your instructor explicitly authorizes it.
+Your assigned repository will be used for the entire semester. Do **not** create a separate repository for each assignment or create your own replacement Project VITAL repository unless the instructor explicitly asks you to do so.
 
 ---
 
-# 3. Add Your Team Members
+# 3. Repository Access
 
-The student who creates the repository must add every team member as a collaborator.
+The instructor will add the appropriate students to each private team repository.
 
-In GitHub:
+Each student must:
 
-1. Open the team repository.
-2. Select **Settings**.
-3. Select **Collaborators** or **Collaborators and teams**.
-4. Add each team member using their GitHub username.
-5. Each student should accept the GitHub invitation.
+1. Use their own GitHub account.
+2. Accept the GitHub organization or repository invitation if prompted.
+3. Verify that they can access the assigned private repository.
+4. Verify that they can clone, commit, and push before the first submission deadline.
 
-Every student should work using their **own GitHub account**.
+Do not share GitHub accounts or credentials.
 
-Do not share GitHub accounts.
+The instructor retains administrative access to all course team repositories.
 
 ---
 
-# 4. Add the Instructor
+# 4. Course Repository vs. Team Repository
 
-Add the instructor to the private repository using the GitHub username provided by your instructor.
+Project VITAL uses two different repositories:
 
-The instructor must be able to access the repository in order to grade your work.
+- **Public course repository:** `CSCI3364-Fall2026/Project_VITAL` — official released assignments, documentation, environment, and course materials.
+- **Private team repository:** `CSCI3364-Fall2026/team-XX` — your team's work, evidence, tests, and assignment submissions.
 
-Before the first assignment deadline, verify that the instructor has access.
+Do **not** submit work directly to the public course repository.
 
 ---
 
@@ -102,7 +82,7 @@ For example:
 
 ```bash
 git clone <YOUR-TEAM-REPOSITORY-URL>
-cd VITAL-Team-XX
+cd team-XX
 ```
 
 Do not copy one student's local repository between computers.
@@ -113,39 +93,28 @@ Each team member should clone and work through Git using their own account.
 
 # 6. Recommended Repository Structure
 
-Your repository should be organized by assignment.
+Your private team repository will contain the work your team produces during the semester.
 
-A typical structure will look like:
+For Assignment 1, a recommended structure is:
 
 ```text
-VITAL-Team-XX/
+team-XX/
 │
 ├── README.md
 │
-├── assignment-01/
-│   ├── exploration-log.md
-│   ├── testing-opportunities.md
-│   ├── reflection.md
-│   ├── feature-map.*
-│   └── evidence/
-│
-├── assignment-02/
-│   ├── workflow.md
-│   ├── http-trace.md
-│   ├── architecture/
-│   ├── data/
-│   ├── dependencies/
-│   ├── testing-analysis.md
-│   └── ai-verification-log.md
-│
-├── assignment-03/
-│
-└── ...
+└── assignment-01/
+    ├── exploration-log.md
+    ├── exploration-challenges.md
+    ├── network-observation.md
+    ├── testing-opportunities.md
+    ├── feature-map.*
+    ├── reflection.md
+    └── evidence/
 ```
 
-Individual assignments may specify additional required files.
+The current assignment instructions are the authoritative source for required deliverables.
 
-Follow the assignment's instructions when they differ from this general structure.
+Additional assignment directories should be created only when those assignments are officially released.
 
 ---
 
@@ -246,7 +215,7 @@ when evaluating individual participation.
 
 Do not artificially divide work simply to increase commit counts.
 
-You will use AI, the instructor will also use AI. The instructor will use AI to make sure your commit is inside the window of the assignment, and if your contribution is meaningful (no deletions, followed by additions - these kinds of things AI can spot really easily), cosmetic changes, wash-up commits (AI and the instructor will evaluate everything!
+Git history is one source of evidence used to understand individual contributions. The instructor may review the timing, content, and substance of commits together with assignment artifacts, peer feedback, and individual reflections. Automated or AI-assisted analysis may be used to help identify patterns in repository activity, such as primarily cosmetic changes, repeated deletion and re-addition of content, or commits made outside the assignment work period. These tools support the review process; they do not replace instructor judgment. Individual contribution will be evaluated based on the overall evidence of meaningful participation in the team's work.
 
 ---
 
