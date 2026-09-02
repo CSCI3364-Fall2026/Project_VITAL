@@ -4,3 +4,7 @@
 # Python generated files
 __pycache__/
 *.py[cod]
+
+# Local environment configuration
+.env
+environment/.env
