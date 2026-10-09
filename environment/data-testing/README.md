@@ -39,6 +39,10 @@ Repeat with `--level medium` (2,000 patients) and `--level large` (20,000 patien
 
 Generated data belongs under `.project-vital/data/`, which is excluded from Git. Do not commit generated datasets or database credentials.
 
+### Vital measurement units
+
+Synthetic vital records use **pounds (lb)** for `weight` and **inches (in)** for `height`, matching the OpenEMR database storage conventions used in this course. The generator converts its source ranges of 45–110 kg and 145–195 cm before writing the CSV files. The loader inserts these values without further unit conversion.
+
 ## Database initialization and loading
 
 The SQL identity initialization and Python database loader require a dedicated A4 database. Do not execute either against the original course environment. The tested initialization and loading commands are provided below.

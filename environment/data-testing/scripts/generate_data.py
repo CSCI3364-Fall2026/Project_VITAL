@@ -40,7 +40,7 @@ def generate(level, seed, output):
                 counts['encounters'] += 1
                 if rng.random() < 0.8:
                     vital_id += 1
-                    writers['vitals'].writerow({'vital_id':vital_id,'pid':pid,'encounter':encounter_id,'date':stamp,'bps':(bps := rng.randrange(95,151)),'bpd':rng.randrange(60,min(96,bps)),'pulse':rng.randrange(55,106),'weight':round(rng.uniform(45,110),2),'height':round(rng.uniform(145,195),2)})
+                    writers['vitals'].writerow({'vital_id':vital_id,'pid':pid,'encounter':encounter_id,'date':stamp,'bps':(bps := rng.randrange(95,151)),'bpd':rng.randrange(60,min(96,bps)),'pulse':rng.randrange(55,106),'weight':round(rng.uniform(45,110)*2.2046226218,2),'height':round(rng.uniform(145,195)/2.54,2)})
                     counts['vitals'] += 1
             for _ in range(rng.randrange(0, 3)):
                 appointment_id += 1

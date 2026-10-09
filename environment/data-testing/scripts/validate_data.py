@@ -4,6 +4,7 @@ import argparse
 import csv
 import hashlib
 import json
+import math
 from collections import Counter
 from datetime import date, datetime, time
 from pathlib import Path
@@ -28,6 +29,8 @@ def validate(folder, max_errors=25):
         meta = json.loads(meta_path.read_text(encoding='utf-8'))
     except (OSError, ValueError) as exc:
         return {'status':'FAIL','errors':[f'metadata.json: {exc}'],'counts':{}}
+    if not isinstance(meta, dict):
+        return {'status': 'FAIL', 'errors': ['metadata.json: root must be a JSON object'], 'counts': {}}
     if meta.get('schema_version') != 1:
         fail('Unsupported schema_version; expected 1')
     level = meta.get('level')
@@ -86,7 +89,7 @@ def validate(folder, max_errors=25):
                             elif encounters[encounter] != pid: fail(f'{loc}: vitals patient does not match encounter patient')
                             datetime.fromisoformat(row['date'])
                             for col in ('bps','bpd','pulse','weight','height'):
-                                if float(row[col]) <= 0: fail(f'{loc}: {col} must be positive in this fixture specification')
+                                if not math.isfinite(float(row[col])) or float(row[col]) <= 0: fail(f'{loc}: {col} must be positive in this fixture specification')
                             if float(row['bps']) <= float(row['bpd']): fail(f'{loc}: systolic <= diastolic in this fixture specification')
                     except (ValueError, TypeError, KeyError, OverflowError) as exc:
                         fail(f'{loc}: invalid value ({exc})')
