@@ -31,6 +31,9 @@ def validate(folder, max_errors=25):
         return {'status':'FAIL','errors':[f'metadata.json: {exc}'],'counts':{}}
     if not isinstance(meta, dict):
         return {'status': 'FAIL', 'errors': ['metadata.json: root must be a JSON object'], 'counts': {}}
+    for field in ('sha256', 'counts'):
+        if not isinstance(meta.get(field), dict):
+            return {'status': 'FAIL', 'errors': [f'metadata.json: {field} must be a JSON object'], 'counts': {}}
     if meta.get('schema_version') != 1:
         fail('Unsupported schema_version; expected 1')
     level = meta.get('level')
