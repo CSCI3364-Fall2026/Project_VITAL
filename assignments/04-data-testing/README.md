@@ -1,4 +1,4 @@
-# Project VITAL — Assignment 4: Data Testing — Quality, Integrity, and Scale
+# Assignment 4 — Data Testing: Quality, Integrity, and Scale
 
 **Team Assignment | OpenEMR | Synthetic Data | Python | MariaDB**
 

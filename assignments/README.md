@@ -63,6 +63,20 @@ Students will:
 
 The private team repositories contain the Assignment 3 workspace and validated unit-testing/CI infrastructure. The public Assignment 3 README remains the authoritative assignment specification.
 
+### Assignment 4 — Data Testing: Quality, Integrity, and Scale
+
+**Status: RELEASED**
+
+**Due: Tuesday, October 20, 2026, at 11:59 PM ET**
+
+Instructions:
+
+[Assignment 4 — Data Testing: Quality, Integrity, and Scale](04-data-testing/README.md)
+
+Assignment 4 focuses on synthetic data generation, validation, database integrity, atomicity, insertion order, and testing at three standardized data scales.
+
+---
+
 Complete each assignment according to its README and the course submission guidelines.
 
 ## Future Assignments
