@@ -52,7 +52,7 @@ def generate(level, seed, output):
         for handle in handles.values():
             handle.close()
     hashes = {name:hashlib.sha256((output/f'{name}.csv').read_bytes()).hexdigest() for name in FIELDS}
-    metadata = {'schema_version':1,'generator_version':'0.1.1','level':level,'seed':seed,'counts':counts,'sha256':hashes,'note':'Synthetic CSV fixture IDs are not database primary keys; loader must map identifiers and create forms registry entries.'}
+    metadata = {'schema_version':1,'generator_version':'0.1.2','level':level,'seed':seed,'counts':counts,'sha256':hashes,'note':'Synthetic CSV fixture IDs are not database primary keys; loader must map identifiers and create forms registry entries.'}
     (output/'metadata.json').write_text(json.dumps(metadata, indent=2, sort_keys=True)+'\n',encoding='utf-8')
     return metadata
 
