@@ -2,7 +2,7 @@
 
 **Team Assignment | OpenEMR | Synthetic Data | Python | MariaDB**
 
-**Due: Tuesday, October 20, 2026, at 11:59 PM ET**
+**Due: Thursday, October 22, 2026, at 11:59 PM ET**
 
 ## Purpose
 
