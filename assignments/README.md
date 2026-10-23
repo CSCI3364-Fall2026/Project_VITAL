@@ -77,6 +77,25 @@ Assignment 4 focuses on synthetic data generation, validation, database integrit
 
 ---
 
+### Assignment 5 — Privacy Testing
+
+**Status: RELEASED**
+
+**Due: Thursday, November 5, 2026, at 11:59 PM ET**
+
+Instructions:
+
+[Assignment 5 — Privacy Testing](05-privacy-testing/README.md)
+
+Assignment 5 covers pseudonymization, quasi-identifier analysis,
+re-identification risk, privacy-versus-utility tradeoffs, negative
+privacy tests, and continuous privacy validation.
+
+Students complete six Markdown report templates in their private
+team repositories.
+
+---
+
 Complete each assignment according to its README and the course submission guidelines.
 
 ## Future Assignments
