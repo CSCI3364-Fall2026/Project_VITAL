@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Untitled</title>
+<style>
+  body { margin: 0; font-family: Georgia, "Times New Roman", serif; background: #ffffff; color: #222; }
+  header { position: sticky; top: 0; z-index: 5; background: #2f5d50; color: #fff; padding: 12px 24px; display: flex; align-items: center; gap: 24px; }
+  header img { height: 44px; width: 44px; }
+  header .site-name { font-size: 22px; margin: 0; font-weight: bold; }
+  nav a { color: #fff; text-decoration: none; margin-right: 16px; font-size: 15px; }
+  nav a:hover { text-decoration: underline; }
+  nav a:focus, .btn:focus { outline: none; }
+  .header-spacer { flex: 1; }
+
+  .ticker { background: #f4e9c8; overflow: hidden; white-space: nowrap; font-size: 14px; padding: 6px 0; }
+  .ticker span { display: inline-block; padding-left: 100%; animation: scroll 20s linear infinite; }
+  @keyframes scroll { to { transform: translateX(-100%); } }
+
+  main { width: 1000px; margin: 0 auto; padding: 24px; }
+  h4 { font-size: 24px; margin: 32px 0 12px; color: #2f5d50; }
+
+  .search { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+  .search input { padding: 8px; font-size: 15px; width: 280px; border: 1px solid #888; border-radius: 4px; }
+
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .card { border: 1px solid #ddd; border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 6px; }
+  .card img { width: 100%; height: auto; display: block; border-radius: 3px; }
+  .card .title { font-weight: bold; font-size: 16px; }
+  .card .meta { color: #b5b5b5; font-size: 13px; margin: 0; }
+  .card .row { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+  .icons { display: flex; gap: 2px; }
+  .icon { width: 16px; height: 16px; font-size: 11px; line-height: 16px; border: none; background: none; padding: 0; cursor: pointer; color: #2f5d50; }
+  .reserve { display: inline-block; background: #2f5d50; color: #fff; padding: 5px 10px; border-radius: 4px; font-size: 13px; cursor: pointer; user-select: none; }
+  .reserve.done { background: #888; }
+  .card a { font-size: 13px; color: #2f5d50; }
+
+  .btn { background: #2f5d50; color: #fff; border: none; padding: 8px 14px; border-radius: 4px; cursor: pointer; font-size: 14px; font-family: inherit; }
+  header .btn { background: #fff; color: #2f5d50; }
+
+  form.join { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 640px; }
+  form.join input[type=text], form.join input[type=email], form.join input[type=password], form.join select { padding: 9px; font-size: 15px; border: 1px solid #888; border-radius: 4px; font-family: inherit; }
+  form.join .full { grid-column: 1 / -1; }
+  .field-group { display: flex; flex-direction: column; gap: 4px; }
+  .bad { border: 2px solid #d33 !important; }
+  #msg { min-height: 22px; font-size: 15px; }
+
+  .backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 10; align-items: center; justify-content: center; }
+  .backdrop.open { display: flex; }
+  .modal { background: #fff; border-radius: 8px; padding: 24px 28px; width: 360px; position: relative; }
+  .modal .close { position: absolute; top: 8px; right: 14px; font-size: 24px; cursor: pointer; color: #555; }
+  .modal table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .modal td { padding: 4px 0; }
+
+  footer { border-top: 1px solid #eee; margin-top: 40px; padding: 20px 24px; font-size: 13px; color: #c4c4c4; text-align: center; }
+  footer a { color: #c4c4c4; }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Ccircle cx='22' cy='22' r='21' fill='%23e7c46a'/%3E%3Cpath d='M22 9c-7 6-9 14-4 22 2 3 4 4 4 4s2-1 4-4c5-8 3-16-4-22z' fill='%232f5d50'/%3E%3Cpath d='M22 13v22' stroke='%23e7c46a' stroke-width='1.5'/%3E%3C/svg%3E" alt="img_0042.png">
+  <div class="site-name">Greenleaf Community Library</div>
+  <nav>
+    <a href="#books">Books</a>
+    <a href="#join">Join</a>
+    <a href="#events">Events</a>
+    <a href="#about">About</a>
+  </nav>
+  <div class="header-spacer"></div>
+  <button class="btn" id="hoursBtn" type="button">Library hours</button>
+</header>
+
+<div class="ticker"><span>📢 Fall book sale this Saturday, 10am–2pm &nbsp;•&nbsp; Story time for kids every Wednesday at 4pm &nbsp;•&nbsp; New study rooms now open on the 2nd floor &nbsp;•&nbsp; Late fees waived during November!</span></div>
+
+<main>
+  <h1 style="font-size:30px;margin:8px 0 4px;">Welcome to Greenleaf</h1>
+  <p>Borrow books, reserve new arrivals, and join our community of readers.</p>
+
+  <h4 id="books">New arrivals</h4>
+  <form class="search" onsubmit="filterBooks(event)">
+    <label for="q">Search by title or author</label>
+    <input id="q" type="search">
+    <button class="btn" type="submit">Search</button>
+  </form>
+  <p id="resultCount" style="font-size:14px;color:#555;margin:4px 0 14px;"></p>
+  <div class="grid" id="grid"></div>
+
+  <h4 id="join">Join the library</h4>
+  <p>A library card is free for all residents. Fill in the form below and we will email your card number.</p>
+  <form class="join" id="joinForm" novalidate>
+    <input type="text" id="name" placeholder="Full name *">
+    <input type="email" id="email" placeholder="Email *">
+    <input type="password" id="pw" class="full" placeholder="Password (8+ characters) *">
+    <div class="field-group">
+      <label for="branch">Home branch</label>
+      <select id="branch">
+        <option>Main Street</option>
+        <option>Riverside</option>
+        <option>Hilltop</option>
+      </select>
+    </div>
+    <div class="field-group" style="justify-content:flex-end;">
+      <label><input type="checkbox" id="news"> Send me the monthly newsletter</label>
+    </div>
+    <div class="full"><button class="btn" type="submit">Create account</button></div>
+    <div id="msg" class="full"></div>
+  </form>
+
+  <h4 id="events">Upcoming events</h4>
+  <p>Author talks, workshops, and reading clubs happen every week. To see the full calendar, <a href="#">click here</a>.</p>
+
+  <h4 id="about">About us</h4>
+  <p>Greenleaf Community Library has served the neighborhood since 1962. We are a fictional library created for a software testing class.</p>
+</main>
+
+<footer>
+  © 2026 Greenleaf Community Library · 12 Elm Street · <a href="#">Read more</a> about our accessibility commitment.
+</footer>
+
+<div class="backdrop" id="backdrop">
+  <div class="modal">
+    <span class="close" id="closeModal">×</span>
+    <h4 style="margin-top:0;">Opening hours</h4>
+    <table>
+      <tr><td>Monday – Thursday</td><td>9am – 8pm</td></tr>
+      <tr><td>Friday</td><td>9am – 6pm</td></tr>
+      <tr><td>Saturday</td><td>10am – 4pm</td></tr>
+      <tr><td>Sunday</td><td>Closed</td></tr>
+    </table>
+    <p style="margin-bottom:0;"><a href="#">Holiday schedule</a></p>
+  </div>
+</div>
+
+<script>
+  var books = [
+    { title: "The River Between Us", author: "Ana Duarte", year: 2025, color: "#7a4e8c" },
+    { title: "Small Machines", author: "Kenji Moro", year: 2024, color: "#c0573e" },
+    { title: "A Map of Quiet Places", author: "Lena Ortiz", year: 2026, color: "#3e7cb1" },
+    { title: "Salt and Starlight", author: "Priya Nair", year: 2025, color: "#2f5d50" },
+    { title: "The Last Lighthouse", author: "Tom Becker", year: 2023, color: "#a67c1f" },
+    { title: "Learning to Code at 60", author: "Ruth Ellison", year: 2026, color: "#4a4a6a" },
+    { title: "Winter Orchard", author: "Sofia Laine", year: 2024, color: "#8c3e5a" },
+    { title: "Field Notes on Birds", author: "Omar Haddad", year: 2025, color: "#5b7d2f" }
+  ];
+
+  function cover(b) {
+    var words = b.title.split(" ");
+    var lines = [];
+    var cur = "";
+    words.forEach(function (w) {
+      if ((cur + " " + w).trim().length > 12) { lines.push(cur.trim()); cur = w; }
+      else { cur = (cur + " " + w).trim(); }
+    });
+    if (cur) lines.push(cur);
+    var text = lines.map(function (l, i) {
+      return "<text x='60' y='" + (60 + i * 18) + "' font-family='Georgia' font-size='15' fill='white' text-anchor='middle'>" + l + "</text>";
+    }).join("");
+    var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 170'><rect width='120' height='170' fill='" + b.color + "'/>" +
+      "<rect x='8' y='8' width='104' height='154' fill='none' stroke='white' stroke-opacity='.4'/>" + text +
+      "<text x='60' y='150' font-family='Georgia' font-size='10' fill='white' fill-opacity='.85' text-anchor='middle'>" + b.author + "</text></svg>";
+    return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+  }
+
+  function render(list) {
+    var grid = document.getElementById("grid");
+    grid.innerHTML = "";
+    list.forEach(function (b) {
+      var card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML =
+        "<img src='" + cover(b) + "'>" +
+        "<div class='title'>" + b.title + "</div>" +
+        "<p class='meta'>" + b.author + " · " + b.year + "</p>" +
+        "<a href='#'>Read more</a>" +
+        "<div class='row'>" +
+          "<div class='reserve' onclick='reserve(this)'>Reserve</div>" +
+          "<div class='icons'>" +
+            "<button class='icon' type='button' aria-label='Add to favorites' onclick='fav(this)'>♡</button>" +
+            "<button class='icon' type='button' aria-label='Share'>↗</button>" +
+          "</div>" +
+        "</div>";
+      grid.appendChild(card);
+    });
+    document.getElementById("resultCount").textContent = list.length + " books shown";
+  }
+
+  function filterBooks(e) {
+    e.preventDefault();
+    var q = document.getElementById("q").value.toLowerCase().trim();
+    render(books.filter(function (b) {
+      return b.title.toLowerCase().indexOf(q) !== -1 || b.author.toLowerCase().indexOf(q) !== -1;
+    }));
+  }
+
+  function reserve(el) {
+    if (el.classList.contains("done")) return;
+    el.classList.add("done");
+    el.textContent = "Reserved ✓";
+  }
+
+  function fav(el) {
+    el.textContent = el.textContent === "♡" ? "♥" : "♡";
+  }
+
+  document.getElementById("joinForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = document.getElementById("name");
+    var email = document.getElementById("email");
+    var pw = document.getElementById("pw");
+    var msg = document.getElementById("msg");
+    msg.style.color = "#d33";
+    pw.classList.remove("bad");
+
+    if (!name.value.trim() || !email.value.trim()) {
+      msg.textContent = "Please fill in all required fields.";
+      return;
+    }
+    if (email.value.indexOf("@") === -1) {
+      msg.textContent = "Please enter a valid email address.";
+      return;
+    }
+    if (pw.value.length < 8) {
+      msg.textContent = "";
+      pw.classList.add("bad");
+      return;
+    }
+    msg.style.color = "#2f5d50";
+    msg.textContent = "Welcome, " + name.value.trim() + "! Your card number will arrive by email.";
+    this.reset();
+  });
+
+  var backdrop = document.getElementById("backdrop");
+  document.getElementById("hoursBtn").addEventListener("click", function () {
+    backdrop.classList.add("open");
+  });
+  document.getElementById("closeModal").addEventListener("click", function () {
+    backdrop.classList.remove("open");
+  });
+  backdrop.addEventListener("click", function (e) {
+    if (e.target === backdrop) backdrop.classList.remove("open");
+  });
+
+  render(books);
+</script>
+</body>
+</html>
