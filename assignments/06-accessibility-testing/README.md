@@ -16,6 +16,9 @@ Evaluate the accessibility of your team's OpenEMR workflow (patient registration
 7. **Reflection (5):** Explain accessibility vs usability, scan limitations, highest-impact barrier, why automated passing is not WCAG AA conformance, and next tests.
 8. **Reproducibility (5):** Provide clear setup, commands, versions, sanitized evidence and links.
 
+## What the provided starter does—and does not do
+The starter GitHub Actions workflow scans a **small synthetic HTML fixture**, solely to demonstrate that an accessibility rule can be tested and a regression can turn CI red. **A passing starter workflow does not test OpenEMR, satisfy the required local integration test, or establish WCAG conformance.** Each team must independently inspect its actual OpenEMR workflow, report manual and automated findings, and implement at least one automated check exercising the relevant OpenEMR screen or its rendered DOM. Label fixture-only results separately from OpenEMR results. Students must supply their own GREEN → RED → GREEN evidence; the initial passing starter run is not a completed experiment.
+
 ## Submission
 In `assignment-06/`, submit `README.md`, `accessibility-plan.md`, `manual-test-report.md`, `automated-scan-report.md`, `accessibility-defects.md`, `automation.md`, `ci-report.md`, `reflection.md`, tests, and optional fixtures/evidence. Add the workflow in `.github/workflows/`.
 
