@@ -22,7 +22,7 @@ The starter GitHub Actions workflow scans a **small synthetic HTML fixture**, so
 ## Submission
 In `assignment-06/`, submit `README.md`, `accessibility-plan.md`, `manual-test-report.md`, `automated-scan-report.md`, `accessibility-defects.md`, `automation.md`, `ci-report.md`, `reflection.md`, tests, and optional fixtures/evidence. Add the workflow in `.github/workflows/`.
 
-Tag the final submission `assignment-06` and push the tag. Never commit patient information, credentials, or intentional accessibility regressions.
+Tag the final submission `assignment-06` and push the tag. Never commit patient information or credentials. For the required GREEN → RED → GREEN experiment, you **may temporarily commit an intentional accessibility regression only in the team-owned synthetic HTML fixture** to produce and document a failing GitHub Actions run. Restore the accessible fixture in a subsequent commit and verify a passing run **before creating the final `assignment-06` tag**. The tagged submission must contain the restored fixture; do not intentionally introduce accessibility regressions into OpenEMR.
 
 ## Important boundaries
 Do not test public or production healthcare systems. Do not claim to simulate disability or represent disabled users. A clean automated scan does not prove accessibility compliance. Do not modify production OpenEMR code merely to pass a test.
