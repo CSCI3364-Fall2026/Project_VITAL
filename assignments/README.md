@@ -96,6 +96,32 @@ team repositories.
 
 ---
 
+### Assignment 6 — Accessibility Testing
+
+**Status: RELEASED**
+
+**Due: Tuesday, November 17, 2026, at 11:59 PM ET**
+
+Instructions:
+
+[Assignment 6 — Accessibility Testing](06-accessibility-testing/README.md)
+
+Assignment 6 evaluates the accessibility of a previously investigated OpenEMR workflow against WCAG 2.2 principles.
+
+Students will:
+
+- design accessibility checks covering **Perceivable, Operable, Understandable, and Robust (POUR)**;
+- manually test keyboard navigation, focus, forms, error states, and zoom/reflow;
+- run automated accessibility scans and interpret their limitations;
+- document evidence-based findings with severity, user impact, and WCAG mappings;
+- implement automated accessibility regression tests, including at least one check against an actual local OpenEMR screen or its rendered DOM;
+- demonstrate a controlled **GREEN → RED → GREEN** cycle using a team-owned synthetic HTML fixture and GitHub Actions;
+- restore the fixture before tagging the final submission and reflect on the limits of automated accessibility testing.
+
+The private team repositories contain the Assignment 6 report templates, synthetic fixture, starter test, and GitHub Actions workflow. **Passing the starter fixture workflow does not demonstrate OpenEMR accessibility or WCAG conformance.** The official Assignment 6 README remains the authoritative specification.
+
+---
+
 Complete each assignment according to its README and the course submission guidelines.
 
 ## Future Assignments
